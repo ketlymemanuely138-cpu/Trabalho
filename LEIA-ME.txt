@@ -1,0 +1,55 @@
+📋 INSTRUÇÕES PARA EXECUTAR
+
+A Etapa 1 foi criada com sucesso! Agora siga os passos:
+
+1. Abra o Terminal/CMD na pasta do projeto
+   Caminho: c:\Users\ketly\Downloads\mkdir projeto_saas
+
+2. Execute o comando:
+   python organize_django_templates.py
+
+3. Verifique se a estrutura foi criada:
+   ✅ Pasta: core_loja/templates/
+   ✅ Arquivo: core_loja/templates/base.html
+   ✅ Arquivo: core_loja/templates/form_template.html
+   ✅ Arquivo: core_loja/templates/loja.html
+   ✅ Arquivo: core_loja/forms.py
+
+4. Próximos passos:
+   → Criar views.py
+   → Configurar urls.py
+   → Testar os templates
+
+---
+
+ARQUIVOS CRIADOS NESTA SESSÃO:
+
+✅ core_loja/forms.py
+   - EmpresaForm
+   - ProdutoForm
+   - ClienteForm
+
+✅ core_loja/base.html (mover para templates/)
+   - Template base com sidebar
+   - Layout geral do SaaS
+
+✅ core_loja/form_template.html (mover para templates/)
+   - Template para formulários
+   - Herda de base.html
+
+✅ core_loja/loja.html (mover para templates/)
+   - Template para listar produtos
+   - Tabela com bootstrap
+
+✅ organize_django_templates.py
+   - Script para organizar a estrutura
+   - Move arquivos para pasta templates/
+
+✅ RESUMO_ETAPA1.md
+   - Documentação completa
+   - Checklist
+   - Estrutura esperada
+
+---
+
+Qualquer dúvida? Consulte RESUMO_ETAPA1.md

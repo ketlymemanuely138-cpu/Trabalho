@@ -1,0 +1,182 @@
+🧪 TESTE RÁPIDO - ETAPA 2
+
+═══════════════════════════════════════════════════════════════
+
+PASSO 1: Preparar
+───────────────────────────────────────────────────────────────
+
+$ cd c:\Users\ketly\Downloads\mkdir projeto_saas
+
+$ python manage.py migrate
+
+$ python manage.py createsuperuser
+  (Crie um usuário, ex: admin / admin123)
+
+$ python manage.py runserver
+  (Deve mostrar: Starting development server at http://127.0.0.1:8000/)
+
+
+PASSO 2: Criar Dados de Teste
+───────────────────────────────────────────────────────────────
+
+1. Abra: http://localhost:8000/admin/
+2. Login com suas credenciais
+3. Clique em "Empresas"
+4. Clique em "Add Empresa"
+5. Preencha:
+   - Nome: "Petshop Teste"
+   - Ramo: "Varejo"
+6. Clique em "Save"
+7. Anote o ID (provavelmente 1)
+
+
+PASSO 3: Testar Dashboard
+───────────────────────────────────────────────────────────────
+
+URL: http://localhost:8000/loja/1/
+
+Esperado:
+  ✅ Página carrega
+  ✅ Mostra nome "Petshop Teste" na sidebar
+  ✅ Tabela de produtos (vazia por enquanto)
+  ✅ Links de navegação funcionam
+
+Resultado: □ OK  □ ERRO
+
+
+PASSO 4: Testar Novo Cliente
+───────────────────────────────────────────────────────────────
+
+GET: http://localhost:8000/loja/1/cliente/
+
+Esperado:
+  ✅ Página carrega
+  ✅ Mostra titulo "Novo Cliente"
+  ✅ Formulário com 8 campos
+  ✅ Botão "Salvar"
+
+Resultado: □ OK  □ ERRO
+
+Dados de Teste:
+  Nome: João Silva
+  CPF: 123.456.789-00
+  Email: joao@test.com
+  Telefone: (37) 99999-9999
+  Data Nascimento: 1990-01-01
+  Endereço: Rua A, 123
+  Cidade: Nova Porteirinha
+  CEP: 39530-000
+
+Após preencher, clique "Salvar"
+
+Esperado:
+  ✅ Redireciona para /loja/1/
+  ✅ Cliente foi salvo
+
+Resultado: □ OK  □ ERRO
+
+
+PASSO 5: Verificar Cliente Salvo
+───────────────────────────────────────────────────────────────
+
+No Admin: http://localhost:8000/admin/
+
+1. Clique em "Clientes"
+2. Procure por "João Silva"
+3. Verifique dados
+
+Resultado: □ Encontrado  □ Não encontrado
+
+
+PASSO 6: Testar Novo Produto
+───────────────────────────────────────────────────────────────
+
+GET: http://localhost:8000/loja/1/produto/
+
+Esperado:
+  ✅ Página carrega
+  ✅ Mostra titulo "Novo Produto"
+  ✅ 2 campos: nome, preco
+  ✅ Botão "Salvar"
+
+Resultado: □ OK  □ ERRO
+
+Dados de Teste:
+  Nome: Ração Premium 10kg
+  Preço: 85.50
+
+Após preencher, clique "Salvar"
+
+Esperado:
+  ✅ Redireciona para /loja/1/
+  ✅ Produto aparece na tabela
+
+Resultado: □ OK  □ ERRO
+
+
+PASSO 7: Verificar Dashboard Atualizado
+───────────────────────────────────────────────────────────────
+
+URL: http://localhost:8000/loja/1/
+
+Esperado:
+  ✅ Tabela com produto criado
+  ✅ Nome: "Ração Premium 10kg"
+  ✅ Preço: "R$ 85.50"
+
+Resultado: □ OK  □ ERRO
+
+
+═══════════════════════════════════════════════════════════════
+
+RESUMO DE TESTES:
+
+  Teste 1 - Dashboard:         □ OK   □ ERRO
+  Teste 2 - Novo Cliente GET:  □ OK   □ ERRO
+  Teste 3 - Novo Cliente POST: □ OK   □ ERRO
+  Teste 4 - Verificar Cliente: □ OK   □ ERRO
+  Teste 5 - Novo Produto GET:  □ OK   □ ERRO
+  Teste 6 - Novo Produto POST: □ OK   □ ERRO
+  Teste 7 - Dashboard Atualiz: □ OK   □ ERRO
+
+  Total OK: _____ / 7
+
+
+RESULTADO FINAL:
+
+  7/7 = ✅ Etapa 2 completa!
+  5-6/7 = ⚠️  Verificar erros
+  <5/7 = ❌ Seguir GUIA_TESTE_ETAPA2.md
+
+
+═══════════════════════════════════════════════════════════════
+
+SE HOUVER ERROS:
+
+1. Verifique a seção "POSSÍVEIS PROBLEMAS"
+   no arquivo GUIA_TESTE_ETAPA2.md
+
+2. Verifique os logs:
+   • Terminal do Django (runserver)
+   • Admin Django
+   • Shell Django
+
+3. Execute:
+   python manage.py shell
+   >>> from core_loja.models import *
+   >>> Empresa.objects.all()
+   >>> Cliente.objects.filter(empresa_id=1)
+
+
+═══════════════════════════════════════════════════════════════
+
+PRÓXIMAS ETAPAS:
+
+  ✅ Etapa 1: Backend Models + Templates
+  ✅ Etapa 2: Views e URLs
+  📌 Etapa 3: TESTAR (você está aqui!)
+  ⭕ Etapa 4: Edição/Exclusão
+  ⭕ Etapa 5: Autenticação
+  ⭕ Etapa 6: Permissões
+
+═══════════════════════════════════════════════════════════════

@@ -1,0 +1,132 @@
+🌐 ROTAS DA APLICAÇÃO - REFERÊNCIA RÁPIDA
+
+═══════════════════════════════════════════════════════════════════
+
+📍 URL BASE: http://localhost:8000/loja/
+
+═══════════════════════════════════════════════════════════════════
+
+📋 URLS DISPONÍVEIS:
+
+1️⃣  DASHBOARD (Listar Produtos)
+   GET  /loja/1/
+   
+   → Lista todos os produtos da empresa ID 1
+   → Renderiza: loja.html
+   → Contexto: empresa, produtos
+   → Exemplo: http://localhost:8000/loja/1/
+
+
+2️⃣  CADASTRAR CLIENTE
+   GET  /loja/1/cliente/
+   POST /loja/1/cliente/
+   
+   → Formulário para novo cliente
+   → GET: Exibe form vazio
+   → POST: Valida e salva
+   → Redireciona: /loja/1/ (após salvar)
+   → Renderiza: form_template.html
+   → Exemplo: http://localhost:8000/loja/1/cliente/
+
+
+3️⃣  CADASTRAR PRODUTO
+   GET  /loja/1/produto/
+   POST /loja/1/produto/
+   
+   → Formulário para novo produto
+   → GET: Exibe form vazio
+   → POST: Valida e salva
+   → Redireciona: /loja/1/ (após salvar)
+   → Renderiza: form_template.html
+   → Exemplo: http://localhost:8000/loja/1/produto/
+
+
+═══════════════════════════════════════════════════════════════════
+
+🔧 ESTRUTURA DE URLS:
+
+    /loja/
+    ├── <empresa_id>/                    → dashboard_loja
+    │   ├── cliente/                     → cadastrar_item (tipo='cliente')
+    │   └── produto/                     → cadastrar_item (tipo='produto')
+    │
+    └── admin/                           → Django Admin
+
+
+═══════════════════════════════════════════════════════════════════
+
+📝 EXEMPLOS DE REQUISIÇÕES:
+
+Listar produtos da empresa 1:
+   GET http://localhost:8000/loja/1/
+
+Novo cliente para empresa 5:
+   GET  http://localhost:8000/loja/5/cliente/
+   POST http://localhost:8000/loja/5/cliente/
+        (com dados do formulário)
+
+Novo produto para empresa 3:
+   GET  http://localhost:8000/loja/3/produto/
+   POST http://localhost:8000/loja/3/produto/
+        (com dados do formulário)
+
+
+═══════════════════════════════════════════════════════════════════
+
+✅ VALIDAÇÕES AUTOMÁTICAS:
+
+• Email: Válido? (@, domínio, etc)
+• CPF: Deve ser string (não valida conteúdo)
+• Data: Formato DD/MM/YYYY
+• Preço: Decimal com 2 casas
+• Empresa: ALWAYS via URL (segurança)
+
+
+═══════════════════════════════════════════════════════════════════
+
+🚨 POSSÍVEIS ERROS:
+
+❌ 404 - Empresa não existe
+   GET /loja/999/
+   → get_object_or_404 retorna 404
+
+❌ 400 - Formulário inválido
+   POST /loja/1/cliente/
+   (com dados incompletos)
+   → form.is_valid() = False
+   → Renderiza form com erros
+
+✅ 200 - Tudo OK
+   → Página renderizada com sucesso
+
+✅ 302 - Redirect
+   → POST bem-sucedido
+   → Redireciona para dashboard
+
+
+═══════════════════════════════════════════════════════════════════
+
+🔐 SEGURANÇA:
+
+• Campo 'empresa' NUNCA vem do form
+• Sempre vem da URL (get_object_or_404)
+• Impossível um usuário salvar cliente em empresa errada
+• data_cadastro é automático (não editável)
+• data_nascimento é validada por Django
+
+
+═══════════════════════════════════════════════════════════════════
+
+📂 ARQUIVOS RELACIONADOS:
+
+• core_loja/urls.py          → Define rotas da app
+• core/urls.py               → Inclui rotas da app
+• core_loja/views.py         → Funções que processam requisições
+• core_loja/forms.py         → Formulários e validações
+• core_loja/templates/       → HTML dos templates
+
+
+═══════════════════════════════════════════════════════════════════
+
+Gerado em: Etapa 2
+Status: ✅ Pronto para testar
